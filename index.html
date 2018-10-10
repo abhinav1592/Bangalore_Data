@@ -27,9 +27,6 @@ function initMap() {
   
   map = new google.maps.Map(document.getElementById('map'), {
     
-  //  for (var i = 12.9667;var j = 77.5667; i < 120; j< 150;i+=5;j+=5) {
-     
-    
     center: {lat: 12.9667, lng: 77.5667},
     zoom: 14,
    /* draggable: false,*/
@@ -40,46 +37,7 @@ function initMap() {
       stylers: [{ visibility: 'off' }]
     }]
   });
-/*
-   var drawingManager = new google.maps.drawing.DrawingManager({
-    drawingMode: google.maps.drawing.OverlayType.MARKER,
-    drawingControl: true,
-    drawingControlOptions: {
-      position: google.maps.ControlPosition.TOP_CENTER,
-      drawingModes: [
-        google.maps.drawing.OverlayType.MARKER,
-        google.maps.drawing.OverlayType.CIRCLE,
-        google.maps.drawing.OverlayType.POLYGON,
-        google.maps.drawing.OverlayType.POLYLINE,
-        google.maps.drawing.OverlayType.RECTANGLE
-      ]
-    },
-    markerOptions: {icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'},
-    circleOptions: {
-      fillColor: '#ffff00',
-      fillOpacity: 1,
-      strokeWeight: 5,
-      clickable: false,
-      editable: true,
-      zIndex: 1,
-      draggable: false
 
-    }
-  });
- drawingManager.setMap(map);*/
-
-  // };
-  // 
-  /*bangalore rectangle coordinates : 
-      North west : 13.107550, 77.338545 
-North east : 13.161746, 77.764098
-
-South West  :12.727508, 77.456149
-South East : 12.894124, 77.906791
-
-New north-east corner: 13.104206198736541, 77.78937461816417
-New south-west corner: 12.782320811019938, 77.46214119140632
-   */
   
  var bounds = new google.maps.LatLngBounds(
   new google.maps.LatLng(13.104206198736541, 77.78937461816417),
@@ -138,26 +96,6 @@ function performSearch() {
     type: 'restaurant'
   };
   service.radarSearch(request, callback);
-/*
-  var request = {
-    bounds: map.getBounds(),
-    keyword: 'hospital'
-  };
-  service.radarSearch(request, callback);*/
-
-  /*  var request = {
-    bounds: map.getBounds(),
-    keyword: 'college'
-  };
-  service.radarSearch(request, callback);
-
-  var request = {
-
-    bounds: map.getBounds(),
-    keyword: '(university) OR (college)'
-  };
-  service.radarSearch(request, callback);*/
-}
 
 
 
@@ -174,13 +112,6 @@ function callback(results, status) {
    
   
   for (var i = 0, result; result = results[i]; i++) { 
-       //console.log(result);
-    /*console.log(" [ "+result.name+"],[ "+result.geometry.location+" ] ");  */
-   /* console.log("================================");
-     console.log(result.name+" Formatted Address : "+ result.formatted_address);
-           console.log(" Coordinates : " +result.geometry.location+ " Vicinity : "+ result.vicinity);
-           console.log("Place_ID : "+result.place_id +" Types : "+ result.types);*/
-
      console.log("["+result.geometry.location+"],["+result.place_id+"]");      
      counter++;
     addMarker(result);
@@ -193,27 +124,6 @@ function callback(results, status) {
   console.log(" Counter  : "+counter );
 }
 }
-
-
-
-
-/*function clickall(place) {
-    service.getDetails(place, function(result, status) {
-
-      if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT)
-{      
-    setTimeout(3000);
-} 
-     else if (status !== google.maps.places.PlacesServiceStatus.OK) {
-        console.error(status);
-        return;
-      }
-           console.log(result.name);
-      infoWindow.setContent(result.name);
-      infoWindow.open(map, marker);
-    
-    });
-  }*/
 
 function addMarker(place) {
   var marker = new google.maps.Marker({
@@ -237,42 +147,8 @@ function addMarker(place) {
         console.error(status);
         return;
       }
-    else  
-           /*console.log("================================");
-           console.log(result.name+" Formatted Address : "+ result.formatted_address);
-           console.log(" Coordinates : " +result.geometry.location+ " Vicinity"+ result.vicinity);
-           console.log("Place_ID"+result.place_id +" Types : "+ result.types);
-*/
-                 
-   {
-    /*console.log(" [ "+result.name+"],[ "+result.geometry.location+" ] ");  */
-    // infoWindow.setContent(result.name);
-    //  infoWindow.open(map, marker);
-    }   
-    
-    });
-   /*bangalore rectangle coordinates : 
-      North west : 13.107550, 77.338545 
-North east : 13.161746, 77.764098
-
-South West  :12.727508, 77.456149
-South East : 12.894124, 77.906791
-   */
-//google.maps.event.trigger( marker, 'click' );
-  /*google.maps.event.addListener(marker, 'click', function() {
-    service.getDetails(place, function(result, status) {
-      if (status !== google.maps.places.PlacesServiceStatus.OK) {
-        console.error(status);
-        return;
-      }
-      console.log(result.name);
-      infoWindow.setContent(result.name);
-      infoWindow.open(map, marker);
-    });
-  });
-*/
-
-}
+  }  
+ 
 
     </script>
   </head>
